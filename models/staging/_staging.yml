@@ -2,20 +2,53 @@
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
+    - name: stg_article_master
+      description: "Reference table for what Department each Material belongs to."
       columns:
-          - name: id
+          - name: material
             description: "The primary key for this table"
             tests:
                 - unique
                 - not_null
+          - name: department
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
+    - name: stg_packing_time_standards
+      description: "Pivoted raw packing time standards data. "
       columns:
-          - name: id
+          - name: item
             description: "The primary key for this table"
             tests:
                 - unique
                 - not_null
+          - name: standard
+
+    - name: stg_transactions
+      description: "All transactions."
+      columns:
+          - name: transaction_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: warehouse_id
+          - name: transaction_timestamp
+          - name: date
+          - name: hour
+          - name: order_type
+          - name: order_type_category
+          - name: order_channel
+          - name: user_id
+          - name: action_code
+          - name: order_number
+          - name: order_line_item
+          - name: article
+          - name: device_code
+          - name: ship_line_Id
+          - name: gift_flag
+          - name: from_area_code
+          - name: to_area_code
+          - name: from_storage_location
+          - name: to_storage_location
+          - name: order_category
+          - name: inventory_detail_number
+          - name: quantity
