@@ -8,14 +8,13 @@
 -- select min(date) as min_date, max(date) as max_date from ref('fct_transactions') }}
 
 
-with packing as (
-    select * from {{ ref('fct_transactions') }}
-    where action_code = 'PKOCLOSE' 
-)
 
-select article.department, standards.standard, packing.* from packing 
-left join {{ ref('fct_article_master') }} article on packing.article_id = article.material
-left join {{ ref('dim_packing_time_standards') }} standards on article.department = standards.item_name
--- group by 1 order by 2 desc
-
+select
+    user_id,
+    count(*)            as transactions,
+    sum(standard)       as total_time_secs,
+    sum(standard)/60.0  as total_time_mins,
+from {{ ref('fct_transactions_with_standards') }}
+group by 1
+order by transactions desc 
 
