@@ -5,7 +5,6 @@
 }}
 
 -- For the purposes of the assignment, this SQL script is a model. In practice, this analysis should be in a BI tools.
-
 with pack_transactions as (
     select * 
     from {{ ref('fct_transactions') }}
@@ -17,9 +16,7 @@ standards as (
         item_name,
         standard
     from {{ ref('dim_packing_time_standards') }}
-     
     union all
-    
     select 
         'Face Masks' as item_name,
         max(case when item_name = 'Smallgood' then standard end) as standard
@@ -28,8 +25,8 @@ standards as (
 
 transactions_with_standards as (
     select 
-        article.department_name, 
-        standards.standard, 
+        replace(article.department_name, ' ', '') as department_name, 
+        standards.standard*cast(pack.quantity as int) as standard_by_quantity, 
         pack.* 
     from pack_transactions pack
     left join {{ ref('fct_article_master') }} article on pack.article_id = article.material_id
@@ -37,3 +34,5 @@ transactions_with_standards as (
 )
 
 select * from transactions_with_standards
+
+
