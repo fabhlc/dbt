@@ -52,3 +52,34 @@ models:
           - name: order_category
           - name: inventory_detail_number
           - name: quantity
+    
+    - name: fct_transactions_with_standards
+      description: "All Packing transactions with standard times expected for packing completion."
+      columns:
+          - name: transaction_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: warehouse_id
+          - name: transaction_timestamp
+          - name: date
+          - name: hour
+          - name: order_type
+          - name: order_type_category
+          - name: order_channel
+          - name: user_id
+          - name: action_code
+          - name: order_number
+          - name: order_line_item
+          - name: article
+          - name: device_code
+          - name: ship_line_Id
+          - name: gift_flag
+          - name: from_area_code
+          - name: to_area_code
+          - name: from_storage_location
+          - name: to_storage_location
+          - name: order_category
+          - name: inventory_detail_number
+          - name: quantity
