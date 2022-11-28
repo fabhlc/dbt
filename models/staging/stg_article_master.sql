@@ -1,11 +1,11 @@
 {{
     config(
-        materialized='table',
-        sortkey='material'
+        materialized='view',
+        sortkey='material_id'
     )
 }}
 
 select 
-    material,
+    cast(material as string) as material_id,
     department
 from {{ ref('article_master') }}

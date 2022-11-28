@@ -18,7 +18,7 @@ select
     action_code,
     order_number,
     order_line_item,
-    article,
+    cast(article as string) as article_id,
     device_code,
     ship_line_id,
     gift_flag,
