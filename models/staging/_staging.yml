@@ -5,12 +5,12 @@ models:
     - name: stg_article_master
       description: "Reference table for what Department each Material belongs to."
       columns:
-          - name: material
+          - name: material_id
             description: "The primary key for this table"
             tests:
                 - unique
                 - not_null
-          - name: department
+          - name: department_name
 
     - name: stg_packing_time_standards
       description: "Pivoted raw packing time standards data. "

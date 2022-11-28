@@ -13,8 +13,9 @@ with packing as (
     where action_code = 'PKOCLOSE' 
 )
 
-select article.department, packing.* from packing 
-left join {{ ref('fct_article_master') }} article on packing.article = article.material
+select article.department, standards.standard, packing.* from packing 
+left join {{ ref('fct_article_master') }} article on packing.article_id = article.material
+left join {{ ref('dim_packing_time_standards') }} standards on article.department = standards.item_name
 -- group by 1 order by 2 desc
 
 
