@@ -35,4 +35,3 @@ transactions_with_standards as (
 select *,
     sum(standard_by_quantity) over (partition by order_number) as expected_pack_time_by_order
 from transactions_with_standards
-
