@@ -15,7 +15,7 @@ with tmp as (
         sum(standard_by_quantity)       as total_time_secs,
         sum(standard_by_quantity)/60.0  as total_time_mins,
         min(transaction_timestamp) as start_time
-    from {{ ref('fct_transactions_with_standards') }}
+    from {{ ref('fct_packing_transactions_with_standards') }}
     group by 1
     order by transactions desc 
 ),

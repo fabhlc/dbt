@@ -6,7 +6,7 @@
 
 -- For the purposes of the assignment, this SQL script is a model. In practice, this analysis should be in a BI tools.
 with pack_transactions as (
-    select * 
+    select *
     from {{ ref('fct_transactions') }}
     where action_code = 'PKOCLOSE' 
 ),
