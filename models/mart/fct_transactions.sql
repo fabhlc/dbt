@@ -8,7 +8,7 @@
 
 select 
     *, 
-    TIMESTAMP_DIFF(next_transaction_timestamp, transaction_timestamp_fmt, SECOND) as sec_diff 
+    TIMESTAMP_DIFF(next_transaction_timestamp, transaction_timestamp_fmt, SECOND) as actual_order_time 
 from (
     select *,
         -- get next timestamp; stabilize timestamp to first order_line_item for easy access downstream
