@@ -12,6 +12,7 @@ models:
                 - not_null
           - name: department_name
 
+
     - name: stg_packing_time_standards
       description: "Pivoted raw packing time standards data. "
       columns:

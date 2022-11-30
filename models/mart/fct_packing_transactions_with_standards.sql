@@ -4,9 +4,8 @@
     )
 }}
 
--- For the purposes of the assignment, this SQL script is a model. In practice, this analysis should be in a BI tools.
 with pack_transactions as (
-    select * 
+    select *
     from {{ ref('fct_transactions') }}
     where action_code = 'PKOCLOSE' 
 ),
@@ -27,12 +26,12 @@ transactions_with_standards as (
     select 
         replace(article.department_name, ' ', '') as department_name, 
         standards.standard*cast(pack.quantity as int) as standard_by_quantity, 
-        pack.* 
+        pack.*
     from pack_transactions pack
     left join {{ ref('fct_article_master') }} article on pack.article_id = article.material_id
     left join standards on article.department_name = standards.item_name
 )
 
-select * from transactions_with_standards
-
-
+select *,
+    sum(standard_by_quantity) over (partition by order_number) as expected_pack_time_by_order
+from transactions_with_standards
