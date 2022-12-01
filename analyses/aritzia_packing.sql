@@ -56,7 +56,7 @@ with order_pack_times as (
             department_name,
             actual_order_time - expected_pack_time_by_order as time_over_kpi,
             sum(actual_order_time) over () as total_order_time_actual,
-            sum(expected_pack_time_by_order) over () total_order_time_expected
+            sum(expected_pack_time_by_order) over () as total_order_time_expected
         from  {{ ref('fct_packing_transactions_with_standards') }}
         where order_line_item = 1 
         order by user_id, transaction_timestamp_fmt asc

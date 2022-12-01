@@ -5,5 +5,5 @@
     )
 }}
 
-
 select * from {{ ref('stg_article_master') }}
+

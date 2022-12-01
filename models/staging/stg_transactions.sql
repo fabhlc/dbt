@@ -9,7 +9,8 @@ select
     transaction_id,
     warehouse_id,
     transaction_timestamp as transaction_timestamp_raw,
-    datetime(cast(left(transaction_timestamp, 18) as timestamp), "UTC") as transaction_timestamp_fmt, -- assumption: data only contains AM dates.
+    -- assumption: data only contains AM dates.
+    datetime(cast(left(transaction_timestamp, 18) as timestamp), "UTC") as transaction_timestamp_fmt, 
     date,
     hour,
     order_type,
@@ -30,3 +31,4 @@ select
     inventory_detail_number,
     quantity
 from {{ ref('transactions') }}
+
