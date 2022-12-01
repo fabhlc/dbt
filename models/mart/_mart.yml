@@ -53,7 +53,7 @@ models:
           - name: inventory_detail_number
           - name: quantity
     
-    - name: fct_transactions_with_standards
+    - name: fct_packing_transactions_with_standards
       description: "All Packing transactions with standard times expected for packing completion."
       columns:
           - name: transaction_id
@@ -62,7 +62,8 @@ models:
                 - unique
                 - not_null
           - name: warehouse_id
-          - name: transaction_timestamp
+          - name: transaction_timestamp_fmt
+          - name: transaction_timestamp_varchar
           - name: date
           - name: hour
           - name: order_type

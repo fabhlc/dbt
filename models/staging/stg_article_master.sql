@@ -6,6 +6,6 @@
 }}
 
 select 
-    cast(material as string)        as material_id,
-    replace(department, '-', '')    as department_name
+    cast(material as string)                        as material_id,
+    replace(replace(department, '-', ''), ' ', '')  as department_name
 from {{ ref('article_master') }}
